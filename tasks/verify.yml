@@ -1,2 +1,19 @@
 ---
-# EMPTY
+
+- name: Check if basic package exists
+  stat:
+    path: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_basic_rpm_package }}"
+  register: rpm_basic_package
+
+- fail:
+    msg: "Basic rpm package not found !"
+  when: not rpm_basic_package.stat.exists
+
+- name: Check if bin package exists
+  stat:
+    path: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_bin_rpm_package }}"
+  register: rpm_bin_package
+
+- fail:
+    msg: "SQLPLUS rpm package not found !"
+  when: not rpm_bin_package.stat.exists

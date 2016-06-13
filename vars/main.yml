@@ -1,7 +1,2 @@
 ---
-
-# NOTE: 'httplib2' library is required for Ansible to run 'uri' module.
-sqlplus_python_libs:
-  - httplib2
-
-sqlplus_download_cookie: 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
+# EMPTY

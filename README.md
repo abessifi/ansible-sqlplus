@@ -41,7 +41,11 @@ This is an Ansible role to install SQLPLUS tool to connect to an Oracle database
 
 ### Installation
 
-Before installation, please make sure your server (or you vagrant box) has `pip` installed.
+First of all make sure you download the required RPMs from [oracle website](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html):
+  - oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+  - oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+
+Now put the downloaded packages to the remote host so Ansible can see them (via the `sqlplus_rpm_download_directory` role parameter). By default, Ansible checks the rpm file inside `/srv/files/` directory.
 
 ### Test connection
 
@@ -53,7 +57,8 @@ Personally and for quick tests, I use the Docker image [sath89/oracle-12c](https
 
 To test the database connection:
 
-	$ sqlplus -L sys/oracle@db.weblogic.local/xe.oracle.docker as sysdba
+	$ export ORACLE_SID=xe.oracle.docker
+  $ sqlplus -L sys/oracle@<DB-SERVER-IP-ADDRESS>/xe.oracle.docker as sysdba
 
 	Connected to:
 	Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
