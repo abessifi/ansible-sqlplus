@@ -1,0 +1,10 @@
+---
+
+sqlplus_basic_rpm_package: 'oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm'
+sqlplus_bin_rpm_package: 'oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm'
+
+sqlplus_download_url: 'http://download.oracle.com/otn/linux/instantclient/121020/'
+
+sqlplus_rpm_download_directory: '/srv/files/'
+
+sqlplus_home: '/usr/lib/oracle/12.1/client64'

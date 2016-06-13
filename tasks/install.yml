@@ -1,0 +1,21 @@
+---
+
+#
+# Install RPM packages
+#
+
+- name: Install basic package
+  yum:
+    name: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_basic_rpm_package }}"
+    state: installed
+  when: ansible_os_family == 'RedHat'
+  become: yes
+  become_user: root
+
+- name: Install sqlplus package
+  yum:
+    name: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_bin_rpm_package }}"
+    state: installed
+  when: ansible_os_family == 'RedHat'
+  become: yes
+  become_user: root

@@ -1,0 +1,44 @@
+---
+
+- name: Make sure python libraries are installed
+  pip:
+    name: "{{ item }}"
+  with_items: "{{ sqlplus_python_libs }}"
+  become: yes
+  become_user: root
+
+- name: Make sure donwload directory is created
+  file:
+    path: "{{ sqlplus_rpm_download_directory }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+  become: yes
+  become_user: root
+
+#
+# Download RPM packages
+#
+
+- name: Check if basic package exists already
+  stat:
+    path: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_basic_rpm_package }}"
+  register: rpm_basic_package
+
+- name: Download basic RPM package
+  uri:
+    url: "{{ sqlplus_download_url }}/{{ sqlplus_basic_rpm_package }}"
+    dest: "{{ sqlplus_rpm_download_directory }}"
+    HEADER_Cookie: "{{ sqlplus_download_cookie }}"
+  when: not rpm_basic_package.stat.exists
+
+- name: Check if bin package exists already
+  stat:
+    path: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_bin_rpm_package }}"
+  register: rpm_bin_package
+
+- name: Download bin RPM package
+  uri:
+    url: "{{ sqlplus_download_url }}/{{ sqlplus_bin_rpm_package }}"
+    dest: "{{ sqlplus_rpm_download_directory }}"
+    HEADER_Cookie: "{{ sqlplus_download_cookie }}"
+  when: not rpm_bin_package.stat.exists

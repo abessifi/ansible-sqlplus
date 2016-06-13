@@ -1,0 +1,5 @@
+---
+
+- hosts: localhost
+  roles:
+    - { role: ansible-kitchen-template, file_name: 'baz' }

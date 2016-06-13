@@ -1,0 +1,17 @@
+---
+
+galaxy_info:
+  author: "Your Name"
+  license: "License Name"
+  min_ansible_version: 1.9.2
+  platforms:
+    - name: foo
+      versions:
+        - bar
+    - name: baz
+      versions:
+        - quax
+  categories:
+    - foo
+    - bar
+dependencies: []
