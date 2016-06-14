@@ -1,17 +1,26 @@
 ---
 
 galaxy_info:
-  author: "Your Name"
-  license: "License Name"
-  min_ansible_version: 1.9.2
+  author: Ahmed Bessifi
+  description: Install and configure SQLPLUS tool
+  license: MIT
+  min_ansible_version: 1.9
   platforms:
-    - name: foo
+    - name: Ubuntu
       versions:
-        - bar
-    - name: baz
+        - precise
+        - trusty
+    - name: Debian
       versions:
-        - quax
+        - wheezy
+        - jessie
+    - name: EL
+      versions:
+        - 6
+        - 7
   categories:
-    - foo
-    - bar
+      - database
+      - oracle
+      - system
+
 dependencies: []

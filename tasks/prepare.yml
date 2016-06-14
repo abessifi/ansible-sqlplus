@@ -1,2 +1,10 @@
 ---
-# EMPTY
+
+- name: Debian | Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: deb.depends_packages
+  when: ansible_os_family == 'Debian'
+  become: yes
+  become_user: root

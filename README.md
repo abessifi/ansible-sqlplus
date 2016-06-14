@@ -6,7 +6,9 @@ This is an Ansible role to install SQL*PLUS tool to connect to an Oracle databas
 
 ## Supported systems
 
-- CentOS 7
+- Debian 7/8
+- Ubuntu Precise/Trusty
+- EL 6/7
 
 ## Role dependencies
 
@@ -82,6 +84,8 @@ For quick tests, you can spin-up a VM using Vagrant. You maybe need to adapt the
 ```
 (host)$ vagrant up --no-provision
 ```
+
+- Copy the RPM packages to the VM.
 
 - Provision the virtual machine:
 

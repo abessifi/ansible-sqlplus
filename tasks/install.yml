@@ -4,7 +4,7 @@
 # Install RPM packages
 #
 
-- name: Install basic package
+- name: CentOS | Install basic package
   yum:
     name: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_basic_rpm_package }}"
     state: installed
@@ -12,10 +12,18 @@
   become: yes
   become_user: root
 
-- name: Install sqlplus package
+- name: CentOS | Install sqlplus package
   yum:
     name: "{{ sqlplus_rpm_download_directory }}/{{ sqlplus_bin_rpm_package }}"
     state: installed
   when: ansible_os_family == 'RedHat'
+  become: yes
+  become_user: root
+
+- name: Debian | Install basic and sqlplus packages
+  shell: "alien -i {{ sqlplus_basic_rpm_package }} {{ sqlplus_bin_rpm_package }}"
+  args:
+    chdir: "{{ sqlplus_rpm_download_directory }}"
+  when: ansible_os_family == 'Debian'
   become: yes
   become_user: root

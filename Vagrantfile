@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder '.', '/vagrant' , disabled: true
 
   config.vm.define 'ansible-vm' do |cfg|
-    cfg.vm.box = 'abessifi/centos-7.1-ansible'
+    cfg.vm.box = 'bento/centos-7.1'
     cfg.vm.hostname = 'ansible-vm'
     cfg.vm.network 'private_network', ip: '192.168.33.101'
     cfg.vm.provider 'virtualbox' do |v|
