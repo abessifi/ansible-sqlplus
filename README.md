@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an Ansible role to install SQLPLUS tool to connect to an Oracle database server.
+This is an Ansible role to install SQL*PLUS tool to connect to an Oracle database server.
 
 ## Supported systems
 
@@ -27,7 +27,10 @@ This is an Ansible role to install SQLPLUS tool to connect to an Oracle database
 
 ## Role Variables
 
-- **`foobar`** - This is a foobar parameter (default: `baz`)
+- **`sqlplus_basic_rpm_package`** - RPM package including basic files required to run OCI, OCCI, and JDBC-OCI applications (default: `oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm`)
+- **`sqlplus_bin_rpm_package`** - RPM package including additional libraries and executable for running SQL*Plus with instant client (default: `oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm`)
+- **`sqlplus_rpm_download_directory`** - Absolute path to directory where installation rpm files are copied (default: `/srv/files/`)
+- **`sqlplus_home`** - Absolute path to sqlplus installation directory (default: `/usr/lib/oracle/12.1/client64`)
 
 ## Available tags
 
@@ -41,7 +44,7 @@ This is an Ansible role to install SQLPLUS tool to connect to an Oracle database
 
 ### Installation
 
-First of all make sure you download the required RPMs from [oracle website](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html):
+First of all make sure you downloaded the required RPMs from [oracle website](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html):
   - oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
   - oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
 
@@ -51,32 +54,39 @@ Now put the downloaded packages to the remote host so Ansible can see them (via 
 
 Personally and for quick tests, I use the Docker image [sath89/oracle-12c](https://hub.docker.com/r/sath89/oracle-12c/) that brings up an Oracle 12c database server. All you need is to pull the image, create a local data directory and spin up an `oracle-db` container:
 
-	$ sudo docker pull sath89/oracle-12c:latest
-	$ sudo mkdir -p /var/lib/oracledb/data
+    $ sudo docker pull sath89/oracle-12c:latest
+    $ sudo mkdir -p /var/lib/oracledb/data
     $ sudo docker run --name oracle-db -d -p 8080:8080 -p 1521:1521 -v /var/lib/oracledb/data:/u01/app/oracle -e DBCA_TOTAL_MEMORY=1024 sath89/oracle-12c
+
 
 To test the database connection:
 
-	$ export ORACLE_SID=xe.oracle.docker
-  $ sqlplus -L sys/oracle@<DB-SERVER-IP-ADDRESS>/xe.oracle.docker as sysdba
+    $ export ORACLE_SID=xe.oracle.docker
+    $ sqlplus -L sys/oracle@<DB-SERVER-IP-ADDRESS>/xe.oracle.docker as sysdba
 
-	Connected to:
-	Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+    Connected to:
+    Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
 
-	SQL>
+    SQL>
 
 # Development and testing
 
 ## Test with Vagrant
 
-For quick tests, you can spin-up a CentOS VM using Vagrant. You maybe need to adapt the Vagrantfile to suit your environment (IP addresses, etc):
+For quick tests, you can spin-up a VM using Vagrant. You maybe need to adapt the Vagrantfile to suit your environment (system, IP addresses, etc):
 
 - Change the Vagrant box name in the Vagrantfile if needed.
 
-- Create and  provision the virtual machine:
+- Create the virtual machine:
 
 ```
-(host)$ vagrant up --provision
+(host)$ vagrant up --no-provision
+```
+
+- Provision the virtual machine:
+
+```
+(host)$ vagrant provision
 ```
 
 ## Run acceptance tests
