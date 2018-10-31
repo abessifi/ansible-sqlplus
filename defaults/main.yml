@@ -6,3 +6,6 @@ sqlplus_bin_rpm_package: 'oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.r
 sqlplus_rpm_download_directory: '/srv/files'
 
 sqlplus_home: '/usr/lib/oracle/12.1/client64'
+
+proxy_env:
+  dummy_var: dummy_var
