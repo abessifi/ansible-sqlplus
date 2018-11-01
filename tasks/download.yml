@@ -1,0 +1,14 @@
+---
+- name: download sqlplus_basic_rpm_package_url
+  get_url:
+    url: "{{ sqlplus_basic_rpm_package_url }}"
+    dest: "{{ sqlplus_rpm_download_directory }}"
+  environment: "{{ proxy_env }}"
+  when: sqlplus_basic_rpm_package_url is defined
+  
+- name: download sqlplus_bin_rpm_package
+  get_url:
+    url: "{{ sqlplus_bin_rpm_package_url }}"
+    dest: "{{ sqlplus_rpm_download_directory }}"
+  environment: "{{ proxy_env }}"
+  when: sqlplus_bin_rpm_package_url is defined
