@@ -34,7 +34,7 @@ This is an Ansible role to install SQL*PLUS tool to connect to an Oracle databas
 - **`sqlplus_rpm_download_directory`** - Absolute path to directory where installation rpm files are copied (default: `/srv/files/`)
 - **`sqlplus_home`** - Absolute path to sqlplus installation directory (default: `/usr/lib/oracle/12.1/client64`)
 - **`sqlplus_basic_rpm_package_url`** - URL to download RPM from (default: `undefined`)
-- **`sqlplus_bin_rpm_package`** - URL to download RPM from (default: `undefined`)
+- **`sqlplus_bin_rpm_package_url`** - URL to download RPM from (default: `undefined`)
 - **`proxy_env`** - Environment variables to proxy / noproxy RPM download (default: `dummy_var: dummy_var`)
 
 ## Available tags
